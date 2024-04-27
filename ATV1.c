@@ -12,7 +12,7 @@ int main(){
     FILE *arquivo = fopen ("artistas.txt", "r");
 
     if (arquivo == NULL){
-        printf("Error ao abrir o arquivo\n"); 
+        printf("Error ao abrir o arquivo \n"); 
         return 1;
     }
 
