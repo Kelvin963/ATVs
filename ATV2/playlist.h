@@ -15,11 +15,13 @@ typedef struct Node {
 } Node;
 
 //estrutura para a lista duplamente encadeada
-typedef struct LDEnc {
-    Node* head;  // ponteiros para o primeiro e ultimo nó da lista
+typedef struct LDEnc {                          // LDEnc: Lista Duplamente Encadeada
+    Node* head;                                 // Ponteiros para o primeiro e ultimo nó da lista
     Node* tail;
 } LDEnc;
 
 //funções para manipulação
 LDEnc* createPlaylist();
 Node* createNode(char* artista, char* musica);
+void addSong(LDEnc* playlist, char* artista, char* musica);
+void removeSong(LDEnc* playlist, char* musica);
