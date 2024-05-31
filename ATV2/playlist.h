@@ -25,3 +25,7 @@ LDEnc* createPlaylist();
 Node* createNode(char* artista, char* musica);
 void addSong(LDEnc* playlist, char* artista, char* musica);
 void removeSong(LDEnc* playlist, char* musica);
+void showPlaylist(DoublyLinkedList* playlist);
+void playNext(Node** current);
+void playPrev(Node** current);
+void currentSong(Node* current);

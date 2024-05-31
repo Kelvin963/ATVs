@@ -53,3 +53,35 @@ void removeSong(LDEnc* playlist, char* musica){
     printf("Musica nao encontrada na playlist.\n");
 }
 
+void showPlaylist(LDEnc* playlist){
+    Node* temp = playlist-> head;
+    while(temp != NULL){
+        printf("Musica: %s, Artista: %s\n", temp->song.musica, temp->song.artista);
+        temp = temp->next;
+    }
+}
+
+void playNext(Node** current){
+    if (*current != NULL && (*current)->next != NULL) {
+        *current = (*current)->next;
+    }else {
+        printf("Nao ha uma proxima musica.\n");
+    }
+}
+
+void playPrev(Node** current) {
+    if (*current != NULL && (*current)->prev != NULL) {
+        *current = (*current)->prev;
+    } else {
+        printf("Nenhuma musica anterior.\n");
+    }
+}
+
+void currentSong(Node* current){
+    if(current != NULL){
+        printf("Atualmente tocando: Musica: %s, Artista: %s\n", current->song.musica, current->song.artista);
+    }else{
+        printf("Nenhuma musica está tocando atualmente\n");
+    }
+}
+
