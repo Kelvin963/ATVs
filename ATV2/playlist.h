@@ -1,5 +1,5 @@
 #ifndef PLAYLIST_H
-#define PLAYLIST_H 
+#define PLAYLIST_H
 
 // Estrutura para representar a linha
 typedef struct Song {
