@@ -86,9 +86,6 @@ int main() {
     // Lê músicas do arquivo e as adiciona à playlist
     readFile(playlist, "playlist.txt");
 
-    // Lê uma nova música e adiciona à playlist
-    readMusic(playlist);
-
     menu(playlist);
 
     // Libera a memória alocada para a playlist

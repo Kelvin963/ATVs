@@ -61,7 +61,7 @@ void removeSong(LDEnc* playlist, char* musica) {
 void showPlaylist(LDEnc* playlist) {
     Node* temp = playlist->head;
     while (temp != NULL) {
-        printf("Musica: %s, Artista: %s\n", temp->song.musica, temp->song.artista);
+        printf("%s;%s\n", temp->song.artista, temp->song.musica);
         temp = temp->next;
     }
 }
@@ -87,7 +87,7 @@ void playPrev(Node** current) {
 // Mostrar música atual
 void currentSong(Node* current) {
     if (current != NULL) {
-        printf("Atualmente tocando: Musica: %s, Artista: %s\n", current->song.musica, current->song.artista);
+        printf("Atualmente tocando: %s;%s\n", current->song.artista, current->song.musica);
     } else {
         printf("Nenhuma musica está tocando atualmente\n");
     }
