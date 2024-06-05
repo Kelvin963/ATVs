@@ -50,20 +50,61 @@ void removeSong(LDEnc* playlist, char* musica) {
                 playlist->tail = temp->prev;
             }
             free(temp);
+            printf("Musica removida com sucesso.\n");
             return;
         }
         temp = temp->next;
     }
     printf("Musica nao encontrada na playlist.\n");
+    system("pause");
+    system("cls");
 }
 
 // Mostrar a playlist
-void showPlaylist(LDEnc* playlist) {
+void showPlaylistIO(LDEnc* playlist) { //ShowPlaylistInOrder
+    printf("PlayList em ordem de cadastro:\n");
     Node* temp = playlist->head;
     while (temp != NULL) {
         printf("%s;%s\n", temp->song.artista, temp->song.musica);
         temp = temp->next;
     }
+    system("pause");
+    system("cls");
+}
+
+void showPlaylistSN(LDEnc* playlist) { //ShowPlaylistSongName
+    printf("Playlist ordenada pelo nome das musicas:\n");
+
+    // Copia os nos da lista para um array para facilitar a ordenação
+    int count = 0;
+    Node* temp = playlist->head;
+    while (temp != NULL) {
+        count++;
+        temp = temp->next;
+    }
+
+    Node* songsArray[count];
+    temp = playlist->head;
+    for (int i = 0; i < count; i++) {
+        songsArray[i] = temp;
+        temp = temp->next;
+    }
+
+    int compareSongs(const void* a, const void* b) {
+        Node* nodeA = *((Node**)a);
+        Node* nodeB = *((Node**)b);
+        return strcmp(nodeA->song.musica, nodeB->song.musica);
+    }
+
+    // Ordena o array de musicas pelo nome das musicas
+    qsort(songsArray, count, sizeof(Node*), compareSongs);
+
+    // Exibe as musicas ordenadas
+    for (int i = 0; i < count; i++) {
+        printf("%s;%s\n", songsArray[i]->song.musica, songsArray[i]->song.artista);
+    }
+    system("pause");
+    system("cls");
 }
 
 // Tocar próxima música
@@ -73,6 +114,8 @@ void playNext(Node** current) {
     } else {
         printf("Nao ha uma proxima musica.\n");
     }
+    system("pause");
+    system("cls");
 }
 
 // Tocar música anterior
@@ -82,14 +125,20 @@ void playPrev(Node** current) {
     } else {
         printf("Nenhuma musica anterior.\n");
     }
+    system("pause");
+    system("cls");
 }
 
 // Mostrar música atual
 void currentSong(Node* current) {
     if (current != NULL) {
         printf("Atualmente tocando: %s;%s\n", current->song.artista, current->song.musica);
+        system("pause");
+        system("cls");
     } else {
         printf("Nenhuma musica está tocando atualmente\n");
+        system("pause");
+        system("cls");
     }
 }
 
@@ -99,6 +148,8 @@ void readFile(LDEnc* playlist, const char* filename) {
     if (file == NULL) {
         printf("Erro ao abrir o arquivo %s\n", filename);
         return;
+        system("pause");
+        system("cls");
     }
 
     char linha[100];
@@ -113,7 +164,7 @@ void readFile(LDEnc* playlist, const char* filename) {
         char* delimiter = strchr(linha, ';');
         if (delimiter != NULL) {
             *delimiter = '\0'; // Separa o título do artista
-            addSong(playlist, delimiter + 1, linha); // Adiciona à playlist
+            addSong(playlist, linha, delimiter + 1); // Adiciona à playlist
         }
     }
     fclose(file);
