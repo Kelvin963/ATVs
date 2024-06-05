@@ -36,9 +36,10 @@ void menu(LDEnc* playlist){
         printf("||_____2. Mostrar playlist ordenada pelo nome das musicas_____________________||\n");
         printf("||_____3. Adicionar musica____________________________________________________||\n");
         printf("||_____4. Remover musica______________________________________________________||\n");
-        printf("||_____5. Tocar proxima musica________________________________________________||\n");
-        printf("||_____6. Tocar musica anterior_______________________________________________||\n");
-        printf("||_____7. Mostrar musica atual________________________________________________||\n");
+        printf("||_____5. Buscar Musica_______________________________________________________||\n");
+        printf("||_____6. Tocar proxima musica________________________________________________||\n");
+        printf("||_____7. Tocar musica anterior_______________________________________________||\n");
+        printf("||_____8. Mostrar musica atual________________________________________________||\n");
         printf("||_____0. Sair________________________________________________________________||\n");
         printf("================================================================================\n");
         printf("\n");
@@ -68,14 +69,22 @@ void menu(LDEnc* playlist){
                 system("cls");
                 break;
             case 5:
+                printf("Digite o nome da musica que deseja buscar: ");
+                fgets(musica, sizeof(musica), stdin);
+                musica[strcspn(musica, "\n")] = '\0'; // Remove a nova linha do final
+                searchSong(playlist, musica);
+                system("pause");
+                system("cls");
+                break;
+            case 6:
                 playNext(&current);
                 currentSong(current);
                 break;
-            case 6:
+            case 7:
                 playPrev(&current);
                 currentSong(current);
                 break;
-            case 7:
+            case 8:
                 currentSong(current);
                 break;
             case 0:

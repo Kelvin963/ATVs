@@ -31,5 +31,6 @@ void playNext(Node** current);
 void playPrev(Node** current);
 void currentSong(Node* current);
 void readFile(LDEnc* playlist, const char* filename);
+void searchSong(LDEnc* playlist, char* musica);
 
 #endif

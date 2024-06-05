@@ -169,3 +169,16 @@ void readFile(LDEnc* playlist, const char* filename) {
     }
     fclose(file);
 }
+
+// Função para buscar uma música na playlist
+void searchSong(LDEnc* playlist, char* musica) {
+    Node* temp = playlist->head;
+    while (temp != NULL) {
+        if (strcmp(temp->song.musica, musica) == 0) {
+            printf("Musica encontrada: %s;%s\n", temp->song.artista, temp->song.musica);
+            return;
+        }
+        temp = temp->next;
+    }
+    printf("Musica não encontrada na playlist.\n");
+}
